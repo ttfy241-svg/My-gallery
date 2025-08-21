@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>আমার ফটো গ্যালারি</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #f6d365, #fda085);
+      margin: 0;
+      padding: 30px;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .gallery-container {
+      position: relative;
+      display: inline-block;
+    }
+    #gallery {
+      width: 90%;
+      max-width: 500px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.3);
+      transition: opacity 0.7s ease-in-out; /* motion effect */
+    }
+    .btn-group {
+      margin-top: 20px;
+    }
+    button {
+      padding: 12px 25px;
+      margin: 5px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      color: white;
+      transition: 0.3s;
+    }
+    .prev-btn {
+      background: #ff6f61;
+    }
+    .next-btn {
+      background: #4CAF50;
+    }
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>আমার ফটো গ্যালারি</h1>
+
+  <div class="gallery-container">
+    <img id="gallery" src="photo1.jpeg" alt="গ্যালারি ছবি">
+  </div>
+
+  <div class="btn-group">
+    <button class="prev-btn" onclick="prevImage()">⬅ Prev</button>
+    <button class="next-btn" onclick="nextImage()">➡ Next</button>
+  </div>
+
+  <script>
+    let photos = [
+      "photo1.jpeg",
+      "photo2.jpeg",
+      "photo3.jpeg",
+      "photo4.jpeg",
+      "photo5.jpeg",
+      "photo6.jpeg",
+      "photo7.jpeg",
+      "photo8.jpeg",
+      "photo9.jpeg",
+      "photo10.jpeg"
+    ];
+
+    let index = 0;
+    let gallery = document.getElementById("gallery");
+
+    function nextImage() {
+      index = (index + 1) % photos.length;
+      changeImage();
+    }
+
+    function prevImage() {
+      index = (index - 1 + photos.length) % photos.length;
+      changeImage();
+    }
+
+    function changeImage() {
+      gallery.style.opacity = 0; // fade out
+      setTimeout(() => {
+        gallery.src = photos[index];
+        gallery.style.opacity = 1; // fade in
+      }, 400);
+    }
+  </script>
+</body>
+</html>
